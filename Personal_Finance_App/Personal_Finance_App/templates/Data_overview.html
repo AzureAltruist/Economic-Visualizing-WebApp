@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Oversigt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="dark-header">
+        <div class="logo">SparKlar</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('index_overblik') }}">Index</a></li>
+            <li><a href="{{ url_for('transaction', account_id=1) }}">Transaction</a></li>
+            <li><a href="{{ url_for('goals') }}">Goal</a></li>
+            <li><a href="{{ url_for('Data_overview') }}">Data</a></li>
+        </ul>
+    </header>    
+
+    <main class="dashboard">
+        <div class="data-container">
+            <!-- Mest Købt Fra -->
+            <div class="data-card blue">
+                <h3>Mest købt fra:</h3>
+                <ul>
+                    {% for item in top_merchants %}
+                        <li>{{ item['Merchant_Name'] }} - {{ item['Purchase_Count'] }} køb</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <!-- Højeste Forbrug -->
+            <div class="data-card red">
+                <h3>Højeste forbrug:</h3>
+                <ul>
+                    {% for item in highest_spending %}
+                        <li>{{ item['Category'] }} - {{ item['total'] }} kr.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <!-- Laveste Forbrug -->
+            <div class="data-card green">
+                <h3>Laveste Forbrug:</h3>
+                <ul>
+                    {% for item in lowest_spending %}
+                        <li>{{ item['Category'] }} - {{ item['total'] }} kr.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>        
+    </main> 
+
+    <footer class="dark-footer">
+        <p>&copy; 2025 SparKlar</p>
+    </footer>
+</body>
+</html>

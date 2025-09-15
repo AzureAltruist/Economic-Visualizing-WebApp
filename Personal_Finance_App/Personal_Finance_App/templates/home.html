@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Økonomisk Overblik</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> <!-- CanvasJS -->
+</head>
+<body>
+    <header class="dark-header">
+        <div class="logo">SparKlar</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('index_overblik') }}">Index</a></li>
+            <li><a href="{{ url_for('transaction', account_id=1) }}">Transaction</a></li>
+            <li><a href="{{ url_for('goals') }}">Goals</a></li>
+            <li><a href="{{ url_for('Data_overview') }}">Data</a></li>
+        </ul>
+    </header>    
+
+    <main class="dashboard">
+        <!-- Sidebar med Konto-liste -->
+        <aside class="sidebar">
+            <h3>Konto</h3>
+            <ul class="account-list">
+                <li><a href="{{ url_for('account_view', account_id=1) }}">Primær konto</a></li>
+                <li><a href="{{ url_for('account_view', account_id=2) }}">Opsparing</a></li>
+                <li><a href="{{ url_for('account_view', account_id=3) }}">Bilforbrug</a></li>
+                <li><a href="{{ url_for('account_view', account_id=4) }}">Ferieopsparing</a></li>
+                <li><a href="{{ url_for('account_view', account_id=5) }}">Andet</a></li>
+            </ul>            
+        </aside>
+
+        <div class="main-content">
+            <!-- Forbrugsoversigt -->
+            <div class="overview-section">
+                <h3>Forbrugsoversigt:</h3>
+                <ul id="expenseList"></ul>
+            </div>
+
+            <!-- Budget Diagram -->
+            <div class="chart-wrapper">
+                <div id="pieChartContainer"></div>
+            </div>
+        </div>
+    </main> 
+
+    <footer class="dark-footer">
+        <p>&copy; 2025 SparKlar</p>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            var accountData = JSON.parse('{{ account_data | tojson | safe }}');
+
+            var expenseList = document.getElementById("expenseList");
+            var chartData = [];
+
+            accountData.forEach(item => {
+                // Tilføj til listen
+                var listItem = document.createElement("li");
+                listItem.textContent = item.label + " - " + item.y + " kr.";
+                expenseList.appendChild(listItem);
+
+                // Tilføj til diagramdata
+                chartData.push({
+                    y: item.y,
+                    label: item.label
+                });
+            });
+
+            // Render Pie Chart
+            var chart = new CanvasJS.Chart("pieChartContainer", {
+                animationEnabled: true,
+                theme: "dark2",
+                data: [{
+                    type: "pie",
+                    indexLabelFontSize: 16,
+                    dataPoints: chartData
+                }]
+            });
+
+            chart.render();
+        };
+    </script>
+</body>
+</html>

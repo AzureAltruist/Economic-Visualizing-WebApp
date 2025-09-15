@@ -1,0 +1,390 @@
+/* GLOBAL STYLES */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+header.dark-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1e1e1e;
+    padding: 1rem 2rem;
+    border-bottom: 3px solid #00d440;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* NAVIGATION */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #00bcd4;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+    text-align: center;
+}
+
+.sidebar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.account-list {
+    list-style: none;
+    padding: 0;
+}
+
+.account-list li {
+    margin-bottom: 1rem;
+}
+
+.account-list li a {
+    display: block;
+    background-color: #252525;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.account-list li a:hover {
+    background-color: #00bcd4;
+}
+
+/* MAIN CONTENT (GENERAL) */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    max-width: 1000px;
+    gap: 2rem;
+    text-align: center;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+/* PIE CHART / FORBRUG */
+.overview-section {
+    width: 35%;
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+    text-align: left;
+}
+
+.overview-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.overview-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.overview-section ul li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.chart-wrapper {
+    width: 65%;
+    background-color: #252525;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+    text-align: center;
+}
+
+.chart-wrapper h2 {
+    font-size: 1.5rem;
+    color: #00bcd4;
+    margin-bottom: 1rem;
+}
+
+#pieChartContainer {
+    width: 100%;
+    height: 400px;
+}
+
+/* TRANSAKTIONS-TABEL */
+.table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #00bcd4;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+th {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #252525;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+tbody tr:hover {
+    background-color: #333;
+    transition: 0.3s;
+}
+
+/* GOALS FORM */
+.container {
+    padding: 2rem;
+}
+
+.container h2,
+.container h3 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+button {
+    padding: 0.8rem;
+    background-color: #00bcd4;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0097a7;
+}
+
+.goal-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: auto;
+}
+
+.goal-item {
+    background-color: #252525;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.goal-details {
+    flex: 1;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.goal-details span.goal-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.goal-delete-button {
+    background-color: #00bcd4;
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.goal-delete-button:hover {
+    background-color: #0097a7;
+}
+
+/* INDEX CARDS */
+.overview-container {
+    padding: 2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.account-card {
+    background-color: #1e1e1e;
+    border: 2px solid #00bcd4;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+    cursor: pointer;
+}
+
+.chart-container {
+    height: 300px;
+    margin-top: 1rem;
+}
+
+/* DATA OVERVIEW */
+
+.data-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.data-card {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
+    text-align: left;
+}
+
+.data-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.data-card ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.data-card li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Farvede kanttyper */
+.data-card.blue {
+    border: 3px solid #00bcd4;
+}
+
+.data-card.red {
+    border: 3px solid #d40000;
+}
+
+.data-card.green {
+    border: 3px solid #00d440;
+}
+
+/* FOOTER */
+footer.dark-footer {
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-content {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .overview-section,
+    .chart-wrapper {
+        width: 100%;
+    }
+
+    .goal-list {
+        width: 90%;
+    }
+}

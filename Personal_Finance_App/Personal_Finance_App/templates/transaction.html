@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaktioner | Sparklar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dark-header">
+        <div class="logo">SparKlar</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('index_overblik') }}">Index</a></li>
+                <li><a href="{{ url_for('transaction', account_id=1) }}">Transaction</a></li>
+                <li><a href="{{ url_for('goals') }}">Goal</a></li>
+                <li><a href="{{ url_for('Data_overview') }}">Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="dashboard">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Konto</h3>
+            <ul class="account-list">
+                <li><a href="{{ url_for('transaction', account_id=1) }}">Primær konto</a></li>
+                <li><a href="{{ url_for('transaction', account_id=2) }}">Opsparing</a></li>
+                <li><a href="{{ url_for('transaction', account_id=3) }}">Bilforbrug</a></li>
+                <li><a href="{{ url_for('transaction', account_id=4) }}">Ferieopsparing</a></li>
+                <li><a href="{{ url_for('transaction', account_id=5) }}">Andet</a></li>
+            </ul>
+        </aside>
+
+        <!-- Transaction Table -->
+        <section class="main-content">
+            <h2>Transaktioner for Konto ID: {{ account_id }}</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dato</th>
+                            <th>Beløb (DKK)</th>
+                            <th>Kategori</th>
+                            <th>Forhandler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in transactions %}
+                        <tr>
+                            <td>{{ t["Date"] }}</td>
+                            <td>{{ t["Amount (DKK)"] }}</td>
+                            <td>{{ t["Category"] }}</td>
+                            <td>{{ t["Vendor"] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dark-footer">
+        <p>&copy; 2025 SparKlar</p>
+    </footer>
+
+</body>
+</html>

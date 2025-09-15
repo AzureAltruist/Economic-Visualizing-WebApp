@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Overblik</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> <!-- CanvasJS -->
+</head>
+<body>
+    <header class="dark-header">
+        <div class="logo">SparKlar</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('index_overblik') }}">Index</a></li>
+            <li><a href="{{ url_for('transaction', account_id=1) }}">Transaction</a></li>
+            <li><a href="{{ url_for('goals') }}">Goal</a></li>
+            <li><a href="{{ url_for('Data_overview') }}">Data</a></li>
+        </ul>
+    </header>    
+
+    <main class="overview-container">
+        <h1>Index Overblik</h1>
+        <div class="grid-container">
+            {% for account in all_account_data %}
+            <div class="account-card" onclick="window.location.href='/account/{{ account.account_id }}';">
+                <h3>{{ account.account_name }}</h3>
+                <div class="chart-container" id="chart{{ account.account_id }}"></div>
+            </div>
+            {% endfor %}
+        </div>        
+    </main> 
+
+    <footer class="dark-footer">
+        <p>&copy; 2025 SparKlar</p>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            let chartData = JSON.parse('{{ all_account_data | tojson | safe }}');
+            chartData.forEach(account => {
+                let chart = new CanvasJS.Chart("chart" + account.account_id, {
+                    animationEnabled: true,
+                    theme: "dark2",
+                    data: [{
+                        type: "pie",
+                        indexLabelFontSize: 16,
+                        dataPoints: account.chart_data
+                    }]
+                });
+                chart.render();
+            });
+        };
+    </script>    
+</body>
+</html>
